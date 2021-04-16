@@ -68,7 +68,7 @@ bestsellers %>%
 
 3. Change all authors with the name Alexander to Alex
 
-```{r, eval=FALSE}
+```{r}
 bestsellers %>% 
   mutate(names = str_replace_all(author, "Alexander", "Alex")) %>%
   select(names, author) %>%
@@ -77,7 +77,7 @@ bestsellers %>%
 
 4. Find books that are the second book in a series
 
-```{r, eval=FALSE}
+```{r}
 bestsellers %>%
   mutate(series = str_detect(description, 
                           pattern = "sequel")) %>%
@@ -86,19 +86,19 @@ bestsellers %>%
 
 5. Find books that are the third or fourth one in a series
 
-```{r, eval=FALSE}
+```{r}
 bestsellers %>%
   mutate(series = str_detect(description, 
-                          pattern = "fourth")) %>%
+                          pattern = "third | fourth")) %>%
   filter(series == TRUE)
 ```
 
 6. Find books that are the 10th, 11th, ..., or 19th book in a series
 
-```{r, eval=FALSE}
+```{r}
+series <- c("10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th")
 bestsellers %>%
-  mutate(series = str_detect(description, 
-                          pattern = "")) %>%
+  mutate(series = str_detect(description, paste(series, collapse = "|"))) %>%
   filter(series == TRUE)
 ```
 
@@ -226,3 +226,4 @@ I'm hoping that the topic for this week is a review for all of you, but it's goo
 Read both short articles in Week6. Data visualization section of [Calling Bulllshit](https://www.callingbullshit.org/syllabus.html#Visual). Were there any principles mentioned that you hadn't heard of before? What graph stood out for you as "the worst"? Did any of the graphs fool you? Or were able to overcome the bad practices (don't worry if they fool you - plently of them have fooled me, too.)? How does practicing good data visualization principles fit in with data ethics?
 
 
+the principle I had not heard of was that an axis needed to have something on it. I found it funny that someone would even think of putting an axis without anything on it. The graph with the corn and soy with thyroid cancer fooled me. Practicing good data visualization principles fits with data ethics because we can hurt someone else by telling an incorrect story by not following data viz principles. 
